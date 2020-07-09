@@ -1,0 +1,60 @@
+
+<div class="main">
+<div class="row mb-4">
+  <div class="col-12 d-flex justify-content-around">
+  </div>
+</div>
+
+<h2 class="mb-2">Lista upita: </h2>
+<ul class="list-group">
+<% tickets.forEach(ticket => {%>
+<% if(ticket.status === 'Otvoren'){%>
+    <a class="mb-2" href="/ticket/<%= ticket._id%>">
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <span> <%= ticket.title %> </span>
+          <div class="ml-4" data-toggle="tooltip" data-placement="top" title="Izbriši upit">
+            <select name="status" class="status-selector status-selector-ticket-<%= ticket._id %>">
+              <option value="Otvoren" <% if(ticket.status === 'Otvoren') { %> selected="selected" <%}%>>Otvoren</option>
+              <option value="Zatvoren"<% if(ticket.status === 'Zatvoren') { %> selected="selected" <%}%>>Zatvoren</option>
+            </select>
+          </div>
+        </span>
+      </div>
+    </li>
+    </a>
+    <%}%>
+<% });%>
+</ul>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+const ticketEls = document.getElementsByClassName("status-selector");
+
+console.log(ticketEls);
+
+for (let item of ticketEls) {
+  const ticketClass = item.classList[1];
+  const ticketId = ticketClass.split("-")[3];
+  console.log(ticketId);
+  item.addEventListener("click", (e) => e.preventDefault());
+  item.addEventListener("change", (e) => statusChange(e, ticketId));
+}
+});
+
+
+function statusChange(e, id) {
+  e.preventDefault();
+  fetch('/status/' + id + `?status=${e.target.value}`,
+  {
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => console.log(response.json()))
+  .then(data => console.log(data) || window.location.reload());
+}
+</script>
