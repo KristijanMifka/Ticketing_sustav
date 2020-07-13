@@ -1,0 +1,27 @@
+<h2 class="text-center">Pregled upita: <%= ticket.title %></h2>
+
+<form action="/modify/<%= ticket._id %>" method="POST">
+  <div class="mb-3">
+    <label for="ticketTitle" class="form-label">Naslov</label>
+    <input <%= ticket.status === "Zatvoren" ? 'disabled' : ''%> value="<%= ticket.title %>" type="text" name="title" class="form-control" id="ticketTitle" aria-describedby="ticketTitle">
+  </div>
+  <div class="mb-3">
+    <label for="ticketContent" class="form-label">Sadržaj</label>
+    <textarea <%= ticket.status === "Zatvoren" ? 'disabled' : ''%> type="text" name="subject" class="form-control" id="ticketContent"><%= ticket.subject %></textarea>
+  </div>
+    <%if (ticket.status === "Zatvoren") {%>
+  <div class="mb-3">
+    <label for="resolvedReason" class="form-label">Razlog zatvaranja upita</label>
+    <textarea disabled value="<%= ticket.resolvedReason %>" type="text" name="resolvedReason" class="form-control" id="resolvedReason"><%= ticket.resolvedReason %></textarea>
+  </div>
+    <%}%>
+	<%if (ticket.status === 'Otvoren' && user.role === 'admin') { %>
+	  <div class="mb-3">
+			<label for="resolvedReason" class="form-label">Razlog zatvaranja upita</label>
+			<textarea type="text" name="resolvedReason" class="form-control" id="resolvedReason"><%= ticket.resolvedReason %></textarea>
+	  </div>
+	<%}%>
+  <%if (ticket.status === 'Otvoren') {%>
+  <button type="submit" class="btn btn-primary">Izmjeni upit</button>
+  <%}%>
+</form>

@@ -1,0 +1,44 @@
+<h2 class="text-center mb-4">Pregled svih upita</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Naziv</th>
+      <th scope="col">Unio</th>
+      <th scope="col">Obradio</th>
+      <th scope="col">Datum Otvaranja</th>
+      <th scope="col">Datum Zatvaranja</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% tickets.forEach(ticket => {%>
+  <% if (ticket.status === 'Zatvoren'){%>
+    <tr>
+      <th><%=ticket.title%></th>
+      <th><%=ticket.user.username%></th>
+      <th><%=ticket.reviewer.username%></th>
+      <th><%= moment(ticket.dateOfCreation).format('DD.MM.YYYY h:mm:ss')%></th>
+      <th><%=moment(ticket.closeDate).format('DD.MM.YYYY h:mm:ss')%></th>
+      <th><%=ticket.status%></th>
+      <th class="text-center">
+        <a href="/ticket/<%= ticket._id %>?referrer='all'">
+          <button class="btn btn-primary w-100">Pregled</button>
+        </a>
+      </th>
+      <th class="text-center"><button onclick="deleteTicket('<%=ticket._id%>')" class="btn btn-danger w-100">Obriši</button></th>
+    </tr>
+    <%}%>
+  <%})%>
+  </tbody>
+</table>
+
+<script>
+function deleteTicket(id) {
+  fetch('/ticket/' + id, { method: 'DELETE' })
+  .then(response => console.log(response.json()))
+  .then(data => console.log(data) || window.location.reload());
+}
+</script>
