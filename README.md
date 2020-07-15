@@ -11,4 +11,6 @@ URL baze podataka --- https://github.com/KristijanMifka/Ticketing_sustav/blob/ma
 
 Unutar url: https://github.com/KristijanMifka/Ticketing_sustav postavljena Korisnička dokumentacija za instalaciju i korištenje - koraci
 
-Dokumentacija: https://github.com/KristijanMifka/Ticketing_sustav/blob/master/Ticeting%20sustav_Dokumentacija%2014.7.2020_Kristijan%20Mifka.doc
+Dokumentacija word: https://github.com/KristijanMifka/Ticketing_sustav/blob/master/Ticeting%20sustav_Dokumentacija%2014.7.2020_Kristijan%20Mifka.doc
+
+Dokumentracija pdf: https://github.com/KristijanMifka/Ticketing_sustav/blob/master/Ticeting%20sustav_Dokumentacija%2014.7.2020_Kristijan%20Mifka.pdf
