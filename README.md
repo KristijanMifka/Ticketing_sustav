@@ -3,6 +3,7 @@
 Tehnolgije za izradu aplikacije:
 
 Node.js --v14.3.0.
+
 MongoDB --- v3.4.24 Enterprise Server
 
 URL aplikacije--- https://github.com/KristijanMifka/Ticketing_sustav/blob/master/Dovrsenost%20aplikacije%2014.07.2020..doc
